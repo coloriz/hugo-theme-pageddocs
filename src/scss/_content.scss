@@ -1,0 +1,37 @@
+//
+// Bootstrap docs content theming
+//
+
+#pd-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    --bs-heading-color: var(--bs-emphasis-color);
+  }
+
+  &[data-pd-document] {
+    h2::before,
+    h3::before,
+    h4::before,
+    h5::before,
+    h6::before {
+      content: attr(data-pd-section-number) ".";
+    }
+  }
+}
+
+.bi {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.feather {
+  width: 1em;
+  height: 1em;
+  min-width: 1em;
+  min-height: 1em;
+}

@@ -1,0 +1,20 @@
+{{ define "main" }}
+<main id="pd-main" class="order-1">
+  {{ partial "toc.html" . }}
+
+  <div
+    class="my-4 my-lg-0 px-lg-5 py-lg-5"
+    data-bs-spy="scroll"
+    data-bs-target="#TableOfContents"
+    data-bs-smooth-scroll="true"
+  >
+    <div
+      id="pd-content"
+      data-pd-document="true"
+    >
+      {{ .Scratch.Set "levelOffset" 0 }}
+      {{ partial "document.html" . }}
+    </div>
+  </div>
+</main>
+{{ end }}

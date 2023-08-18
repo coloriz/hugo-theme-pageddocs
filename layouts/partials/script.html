@@ -1,0 +1,11 @@
+{{ $jsPath := "js/pageddocs.js" -}}
+{{ $js := resources.Get $jsPath -}}
+{{ range resources.Match "js/*.js" -}}
+  {{ .Publish -}}
+{{ end -}}
+{{ if eq hugo.Environment "development" -}}
+  <script src="{{ $js.RelPermalink }}"></script>
+{{- else -}}
+  {{ $js := $js | fingerprint "sha384" -}}
+  <script src="{{ $js.RelPermalink }}" {{ printf "integrity=%q" $js.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous"></script>
+{{- end -}}

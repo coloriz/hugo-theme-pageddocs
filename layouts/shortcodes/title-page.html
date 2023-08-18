@@ -1,0 +1,19 @@
+{{- $title := .Get "title" -}}
+{{- $subtitle := .Get "subtitle" -}}
+{{- $author := .Get "author" -}}
+{{- $revision := .Get "revision" -}}
+<section class="d-none d-print-block pd-title-page">
+  <div class="pd-title-page-title">{{ $title }}</div>
+  <div class="pd-title-page-subtitle">{{ $subtitle }}</div>
+  <div class="pd-title-page-author">{{ $author }}</div>
+  <div class="pd-title-page-revision">{{ $revision }}</div>
+</section>
+<div class="d-print-none mb-5">
+  {{ if not $subtitle -}}
+    <h1>{{ $title }}</h1>
+  {{- else -}}
+    <h1>{{ $title }}: {{ $subtitle }}</h1>
+  {{- end }}
+  <div class="small text-body-secondary">written by {{ $author }}</div>
+  <div class="small text-body-secondary">{{ $revision }}</div>
+</div>

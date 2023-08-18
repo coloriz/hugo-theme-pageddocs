@@ -1,0 +1,20 @@
+// Modify Bootstrap options
+$enable-shadows:          true;
+$font-size-root:          17px;
+
+@import "bootstrap/scss/bootstrap";
+@import "npm:katex/dist/katex.css";
+
+// Load Paged Docs components
+@import "variables";
+@import "navbar";
+@import "content";
+@import "sidebar";
+@import "layout";
+@import "toc";
+@import "footer";
+@import "scrolling";
+@import "anchor";
+@import "pagedjs";
+@import "print";
+@import "titlepage";

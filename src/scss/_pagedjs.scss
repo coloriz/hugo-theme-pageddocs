@@ -1,0 +1,76 @@
+@media screen, pagedjs-ignore {
+  @include color-mode(print, true) {
+    body {
+      background-color: whitesmoke;
+    }
+  }
+
+  .pagedjs_pages {
+    display: flex;
+    width: calc(var(--pagedjs-width) * 2 + var(--pd-page-margin-x) * 4);
+    flex: 0;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+
+  .pagedjs_page {
+    background-color: var(--pd-page-bg);
+    box-shadow: 0 0 0 1px var(--pd-page-border-color);
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: var(--pd-page-margin-y) var(--pd-page-margin-x);
+  }
+
+  .pagedjs_page:last-of-type {
+    margin-bottom: 10mm;
+  }
+
+  /* show the margin-box */
+  .pagedjs_margin-top-left-corner-holder,
+  .pagedjs_margin-top,
+  .pagedjs_margin-top-left,
+  .pagedjs_margin-top-center,
+  .pagedjs_margin-top-right,
+  .pagedjs_margin-top-right-corner-holder,
+  .pagedjs_margin-bottom-left-corner-holder,
+  .pagedjs_margin-bottom,
+  .pagedjs_margin-bottom-left,
+  .pagedjs_margin-bottom-center,
+  .pagedjs_margin-bottom-right,
+  .pagedjs_margin-bottom-right-corner-holder,
+  .pagedjs_margin-right,
+  .pagedjs_margin-right-top,
+  .pagedjs_margin-right-middle,
+  .pagedjs_margin-right-bottom,
+  .pagedjs_margin-left,
+  .pagedjs_margin-left-top,
+  .pagedjs_margin-left-middle,
+  .pagedjs_margin-left-bottom {
+    box-shadow: 0 0 0 1px inset var(--pd-page-margin-box-color);
+  }
+}
+
+/* Marks (to delete when merge in paged.js) */
+.pagedjs_marks-crop {
+  z-index: 999999999999;
+}
+
+.pagedjs_bleed-top .pagedjs_marks-crop,
+.pagedjs_bleed-bottom .pagedjs_marks-crop {
+  box-shadow: 1px 0px 0px 0px var(--pagedjs-crop-shadow);
+}
+
+.pagedjs_bleed-top .pagedjs_marks-crop:last-child,
+.pagedjs_bleed-bottom .pagedjs_marks-crop:last-child {
+  box-shadow: -1px 0px 0px 0px var(--pagedjs-crop-shadow);
+}
+
+.pagedjs_bleed-left .pagedjs_marks-crop,
+.pagedjs_bleed-right .pagedjs_marks-crop {
+  box-shadow: 0px 1px 0px 0px var(--pagedjs-crop-shadow);
+}
+
+.pagedjs_bleed-left .pagedjs_marks-crop:last-child,
+.pagedjs_bleed-right .pagedjs_marks-crop:last-child {
+  box-shadow: 0px -1px 0px 0px var(--pagedjs-crop-shadow);
+}

@@ -1,0 +1,21 @@
+{{ define "main" }}
+<main id="pd-main" class="order-1">
+  <div
+    id="pd-content"
+    class="my-4 my-lg-0 px-lg-5 py-lg-5"
+  >
+    {{ .Content }}
+
+    <div class="list-group list-group-flush">
+      {{ range .Pages.ByWeight }}
+        <a
+          href="{{ .RelPermalink }}"
+          class="list-group-item list-group-item-action"
+        >
+          {{ .Title }}
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</main>
+{{ end }}

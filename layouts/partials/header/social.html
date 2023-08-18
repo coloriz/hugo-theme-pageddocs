@@ -1,0 +1,17 @@
+{{ $bi := resources.Get "bootstrap-icons.svg" }}
+
+<ul class="navbar-nav flex-wrap ms-lg-2 pd-social">
+  <li class="nav-item col-6 col-lg-auto">
+    <a
+      class="nav-link px-0 px-lg-2"
+      href="{{ site.Params.pd.repo_url }}"
+      target="_blank"
+      rel="noopener"
+    >
+      <svg class="bi">
+        <use href="{{ $bi.RelPermalink }}#github"></use>
+      </svg>
+      <small class="d-lg-none ms-2">GitHub</small>
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" data-bs-theme="auto">
+{{ partial "head.html" . -}}
+<body>
+{{ partial "header/header.html" . -}}
+
+<div class="container-xxl px-3 ps-lg-0 pd-layout">
+  {{ partial "sidebar/sidebar.html" . }}
+
+  {{ block "main" . }}
+  {{ end }}
+</div>
+
+{{ partial "footer.html" . -}}
+{{ partial "script.html" . -}}
+</body>
+</html>

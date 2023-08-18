@@ -1,0 +1,62 @@
+{
+  "name": "hugo-theme-pageddocs",
+  "version": "0.1.0",
+  "description": "The PagedDocs is a Bootstrap-based Hugo Theme for printable documentation.",
+  "repository": "https://github.com/coloriz/hugo-theme-pageddocs",
+  "author": "coloriz",
+  "license": "MIT",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.1",
+    "bootstrap-icons": "^1.10.5",
+    "feather-icons": "^4.29.1",
+    "katex": "^0.16.8",
+    "mermaid": "^10.4.0",
+    "pagedjs": "^0.4.3",
+    "parcel": "^2.9.3",
+    "parcel-namer-rewrite": "^2.0.0-rc.3",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.1",
+    "sass": "^1.65.1"
+  },
+  "scripts": {
+    "build": "yarn clean && parcel build --no-cache",
+    "watch": "parcel watch",
+    "clean": "rimraf ./assets/*"
+  },
+  "browserslist": [
+    ">= 0.5%",
+    "last 2 major versions",
+    "not dead",
+    "Chrome >= 60",
+    "Firefox >= 60",
+    "Firefox ESR",
+    "iOS >= 12",
+    "Safari >= 12",
+    "not Explorer <= 11"
+  ],
+  "targets": {
+    "css": {
+      "distDir": "assets/css",
+      "source": "src/scss/pageddocs.scss"
+    },
+    "js": {
+      "context": "browser",
+      "distDir": "assets/js",
+      "source": "src/js/pageddocs.js",
+      "sourceMap": false
+    },
+    "bi": {
+      "distDir": "assets",
+      "source": "node_modules/bootstrap-icons/bootstrap-icons.svg"
+    }
+  },
+  "@parcel/bundler-default": {
+    "minBundles": 99999
+  },
+  "parcel-namer-rewrite": {
+    "hashing": "never",
+    "disable": false
+  }
+}

@@ -1,0 +1,15 @@
+@page {
+  size: A4 portrait;
+  margin-top: 20mm;
+  margin-bottom: 20mm;
+  margin-left: 20mm;
+  margin-right: 20mm;
+
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+
+.pd-page-break {
+  break-before: page;
+}

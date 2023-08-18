@@ -1,0 +1,65 @@
+<header class="navbar navbar-expand-lg sticky-top d-print-none">
+  <nav class="container-xxl" aria-label="Main navigation">
+    <!-- Sidebar toggler -->
+    <button
+      class="navbar-toggler me-5 me-lg-0"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#pd-sidebar-offcanvas"
+      aria-controls="pd-sidebar"
+      aria-label="Toggle docs navigation"
+    >
+      <i data-feather="menu"></i>
+    </button>
+
+    <a class="navbar-brand d-flex align-items-center" href="{{ site.BaseURL | relLangURL }}" aria-label="{{ site.Title }}">
+      {{ with site.Params.pd.brand_image_url -}}
+        <img src="{{ . }}" alt="Logo" width="36" height="36" class="me-2">
+      {{ end -}}
+      <span>{{ site.Title }}</span>
+    </a>
+
+    <!-- Navbar toggler -->
+    <button
+      class="navbar-toggler d-flex d-lg-none order-3"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#pd-navbar-offcanvas"
+      aria-controls="pd-navbar-offcanvas"
+      aria-label="Toggle navigation"
+    >
+      <i data-feather="more-horizontal"></i>
+    </button>
+
+    <div
+      class="offcanvas-lg offcanvas-end flex-grow-1"
+      tabindex="-1"
+      id="pd-navbar-offcanvas"
+      aria-labelledby="pd-navbar-offcanvas-label"
+      data-bs-scroll="true"
+    >
+      <div class="offcanvas-header px-4 pb-0">
+        <h5 class="offcanvas-title" id="pd-navbar-offcanvas-label">{{ site.Title }}</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          data-bs-target="#pd-navbar-offcanvas"
+        >
+        </button>
+      </div>
+      <div class="offcanvas-body p-4 pt-0 p-lg-0">
+        {{- partial "header/hr.html" . -}}
+        {{- partial "header/menus.html" . -}}
+        {{- partial "header/hr.html" -}}
+        {{- partial "header/search.html" . -}}
+        {{- partial "header/hr.html" . -}}
+        {{- partial "header/social.html" . -}}
+        <div class="vr d-none d-lg-block mx-2 my-1 text-white"></div>
+        {{- partial "header/hr.html" . -}}
+        {{- partial "header/render-modes.html" . -}}
+      </div>
+    </div>
+  </nav>
+</header>

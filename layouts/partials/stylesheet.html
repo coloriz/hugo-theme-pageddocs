@@ -1,0 +1,12 @@
+{{ $cssPath := "css/pageddocs.css" -}}
+{{ $css := resources.Get $cssPath -}}
+{{ (resources.Get (printf "%s.map" $cssPath)).Publish -}}
+{{ range resources.Match "css/KaTex_*" -}}
+  {{ .Publish -}}
+{{ end -}}
+{{ if eq hugo.Environment "development" -}}
+  <link href="{{ $css.RelPermalink }}" rel="stylesheet">
+{{- else -}}
+  {{- $css := $css | fingerprint "sha384" -}}
+  <link href="{{ $css.RelPermalink }}" rel="stylesheet" {{ printf "integrity=%q" $css.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
+{{- end -}}

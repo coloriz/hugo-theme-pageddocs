@@ -1,0 +1,13 @@
+<section data-pd-level-offset="{{ .Scratch.Get "levelOffset" }}">
+  {{ .Content }}
+</section>
+{{ range .Pages.ByWeight -}}
+  {{- .Scratch.Set "levelOffset" (add ($.Scratch.Get "levelOffset") 1) -}}
+  {{ if .IsSection -}}
+    {{ partial "document.html" . }}
+  {{- else -}}
+    <section data-pd-level-offset="{{ .Scratch.Get "levelOffset" }}">
+      {{ .Content }}
+    </section>
+  {{- end }}
+{{- end }}

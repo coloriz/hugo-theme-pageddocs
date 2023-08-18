@@ -1,0 +1,26 @@
+baseURL = 'http://example.org'
+languageCode = 'en-us'
+title = 'Paged Docs'
+defaultContentLanguage = 'en'
+disableLanguages = ['ko']
+sectionPagesMenu = 'main'
+copyright = 'Powered by Hugo, Bootstrap and Paged Docs'
+
+[languages]
+  [languages.en]
+    contentDir = 'content/en'
+    languageCode = 'en-US'
+    languageName = 'English'
+    weight = 1
+  [languages.ko]
+    contentDir = 'content/ko'
+    languageCode = 'ko-KR'
+    languageName = 'Korean'
+    weight = 2
+
+[params]
+  [params.pd]
+    theme_color = '#712cf9'
+    theme_color_dark = '#212529'
+    brand_image_url = '/brand.svg'
+    repo_url = 'https://github.com/coloriz/hugo-theme-pageddocs'

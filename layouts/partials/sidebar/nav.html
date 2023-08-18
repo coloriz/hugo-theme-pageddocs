@@ -1,0 +1,7 @@
+<nav class="w-100" aria-label="Docs navigation">
+  <ul class="list-unstyled pd-sidebar-nav">
+  {{ range .FirstSection.Sections }}
+    {{ partial "sidebar/navitem.html" (dict "Context" . "RootContext" $ "Depth" 0) }}
+  {{ end }}
+  </ul>
+</nav>

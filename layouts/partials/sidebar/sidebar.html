@@ -1,0 +1,32 @@
+<aside class="d-print-none pd-sidebar">
+  <div class="pd-sidebar-sections">
+    <div
+      class="offcanvas-lg offcanvas-start"
+      tabindex="-1"
+      id="pd-sidebar-offcanvas"
+      aria-labelledby="pd-sidebar-offcanvas-label"
+    >
+      <div class="offcanvas-header border-bottom">
+        <h5
+          class="offcanvas-title"
+          id="pd-sidebar-offcanvas-label"
+        >
+          Browse
+        </h5>
+        <button
+          type="button"
+          class="btn btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          data-bs-target="#pd-sidebar-offcanvas"
+        >
+        </button>
+      </div>
+
+      <div class="offcanvas-body">
+        {{ partial "sidebar/nav.html" . }}
+      </div>
+    </div>
+  </div>
+  <div class="pd-sidebar-shadow"></div>
+</aside>

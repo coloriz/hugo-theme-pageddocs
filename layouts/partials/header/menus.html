@@ -1,0 +1,14 @@
+<ul class="navbar-nav flex-row flex-wrap">
+  {{ range site.Menus.main -}}
+    {{- $isActive := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
+    <li class="nav-item col-6 col-lg-auto">
+      <a
+        class="nav-link px-0 px-lg-2{{ if $isActive }} active{{ end }}"
+        aria-current="{{ $isActive }}"
+        href="{{ .URL }}"
+      >
+        {{ .Name }}
+      </a>
+    </li>
+  {{ end -}}
+</ul>

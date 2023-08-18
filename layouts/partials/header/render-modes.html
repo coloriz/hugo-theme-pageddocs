@@ -1,0 +1,87 @@
+{{ $bi := resources.Get "bootstrap-icons.svg" -}}
+<ul class="navbar-nav flex-wrap pd-render-modes">
+  <li class="nav-item">
+    <button
+      id="pd-print"
+      class="nav-link px-0 px-lg-2 d-flex align-items-center"
+      type="button"
+      aria-label="Toggle Paged Media polyfill"
+    >
+      <svg class="bi my-1">
+        <use href="{{ $bi.RelPermalink }}#printer-fill"></use>
+      </svg>
+      <span class="d-lg-none ms-2">Toggle Paged Media polyfill</span>
+    </button>
+  </li>
+
+  <li class="nav-item dropdown">
+    <button
+      class="nav-link dropdown-toggle px-0 px-lg-2 d-flex align-items-center"
+      id="pd-theme"
+      type="button"
+      aria-expanded="false"
+      data-bs-toggle="dropdown"
+      data-bs-display="static"
+      aria-label="Toggle theme (auto)"
+    >
+      <svg class="bi my-1 theme-icon-active">
+        <use href="{{ $bi.RelPermalink }}#circle-half"></use>
+      </svg>
+      <span class="d-lg-none ms-2" id="pd-theme-text">Toggle theme</span>
+    </button>
+    <ul
+      id="pd-theme-list"
+      class="dropdown-menu dropdown-menu-end"
+      aria-labelledby="pd-theme-text"
+    >
+      <li>
+        <button
+          type="button"
+          class="dropdown-item d-flex align-items-center"
+          data-bs-theme-value="light"
+          aria-pressed="false"
+        >
+          <svg class="bi me-2 opacity-50 theme-icon">
+            <use href="{{ $bi.RelPermalink }}#sun-fill"></use>
+          </svg>
+          Light
+          <svg class="bi ms-auto d-none">
+            <use href="{{ $bi.RelPermalink }}#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button
+          type="button"
+          class="dropdown-item d-flex align-items-center"
+          data-bs-theme-value="dark"
+          aria-pressed="false"
+        >
+          <svg class="bi me-2 opacity-50 theme-icon">
+            <use href="{{ $bi.RelPermalink }}#moon-stars-fill"></use>
+          </svg>
+          Dark
+          <svg class="bi ms-auto d-none">
+            <use href="{{ $bi.RelPermalink }}#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button
+          type="button"
+          class="dropdown-item d-flex align-items-center active"
+          data-bs-theme-value="auto"
+          aria-pressed="true"
+        >
+          <svg class="bi me-2 opacity-50 theme-icon">
+            <use href="{{ $bi.RelPermalink }}#circle-half"></use>
+          </svg>
+          Auto
+          <svg class="bi ms-auto d-none">
+            <use href="{{ $bi.RelPermalink }}#check2"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </li>
+</ul>

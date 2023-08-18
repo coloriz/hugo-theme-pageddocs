@@ -1,0 +1,48 @@
+.pd-layout {
+  @include media-breakpoint-up(lg) {
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 2fr 7fr;
+    gap: 0;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    max-width: 1640px;
+  }
+}
+
+.pd-sidebar {
+  grid-area: sidebar;
+}
+
+#pd-main {
+  grid-area: main;
+
+  @include media-breakpoint-down(lg) {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: grid;
+    grid-template-areas:
+      "toc"
+      "content";
+    grid-template-rows: auto 1fr;
+    gap: 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-areas:
+      "content toc";
+    grid-template-columns: 4fr 1fr;
+  }
+}
+
+#pd-toc {
+  grid-area: toc;
+}
+
+#pd-content {
+  grid-area: content;
+}

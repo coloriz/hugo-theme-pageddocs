@@ -1,0 +1,46 @@
+{{- $isDescendant := hasPrefix .RootContext.RelPermalink .Context.RelPermalink -}}
+{{- $isActive := eq .RootContext.RelPermalink .Context.RelPermalink -}}
+{{- $hasChildren := .Context.IsSection -}}
+{{- $pageID := printf "page-%s" .Context.File.UniqueID -}}
+{{- $isDocument := eq .Context.Layout "document" -}}
+
+<li class="pd-sidebar-nav-item">
+  {{ if $hasChildren -}}
+    <button
+      type="button"
+      class="btn pd-sidebar-btn-collapse{{ if not $isDescendant }} collapsed{{ end }}"
+      data-bs-toggle="collapse"
+      data-bs-target="#{{ $pageID }}"
+      aria-expanded="{{ $isDescendant }}"
+      aria-controls="{{ $pageID }}"
+    >
+      <span class="pd-sidebar-btn-collapse-content">
+        <i data-feather="chevron-right"></i>
+      </span>
+    </button>
+  {{ end -}}
+  <a
+    href="{{ .Context.RelPermalink }}"
+    class="pd-sidebar-nav-link{{ if $isActive }} active{{ end }}"
+  >
+    <div class="pd-sidebar-nav-link-text align-items-center">
+      {{ .Context.Title }}
+      {{ if $isDocument -}}
+        <i class="ms-1 text-light-emphasis" data-feather="file-text"></i>
+      {{ end -}}
+    </div>
+  </a>
+  {{ if $hasChildren -}}
+    <div
+      class="collapse{{ if $isDescendant }} show{{ end }}"
+      id="{{ $pageID }}"
+    >
+      {{ $depth := add .Depth 1 }}
+      <ul class="list-unstyled pd-sidebar-nav-subnav" style="--depth: {{ $depth }};">
+      {{ range .Context.Pages.ByWeight -}}
+        {{- partial "sidebar/navitem.html" (dict "Context" . "RootContext" $.RootContext "Depth" $depth) -}}
+      {{ end -}}
+      </ul>
+    </div>
+  {{ end -}}
+</li>

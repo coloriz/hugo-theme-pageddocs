@@ -1,0 +1,37 @@
+.pd-title-page {
+  page: titlePage;
+  text-align: right;
+
+  &-title {
+    position: absolute;
+    bottom: 55%;
+    right: 0;
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: dimgray;
+  }
+
+  &-subtitle {
+    position: absolute;
+    right: 0;
+    bottom: 38%;
+    font-size: 42px;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  &-author {
+    position: absolute;
+    right: 0;
+    bottom: 20%;
+    font-size: 24px;
+  }
+
+  &-revision {
+    position: absolute;
+    right: 0;
+    bottom: 10%;
+    font-size: 20px;
+  }
+}
