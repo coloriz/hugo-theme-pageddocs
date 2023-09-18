@@ -14,7 +14,7 @@ const render = async (theme) => {
   const nodes = Array.from(document.querySelectorAll(".language-mermaid"));
   await Promise.all(
     nodes.map(async (element, i) => {
-      const { svg } = await mermaid.render(`mermaid-${i}`, element.dataset.pdMermaid);
+      const { svg } = await mermaid.render(`mermaid-${i}`, element.dataset.pdCode);
       element.innerHTML = svg;
     }),
   );

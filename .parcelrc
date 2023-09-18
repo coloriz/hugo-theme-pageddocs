@@ -1,4 +1,7 @@
 {
   "extends": "@parcel/config-default",
+  "transformers": {
+    "*.wasm": ["@parcel/transformer-raw"]
+  },
   "namers": ["parcel-namer-rewrite", "..."]
 }

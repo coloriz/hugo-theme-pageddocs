@@ -1,6 +1,6 @@
 {{ $jsPath := "js/pageddocs.js" -}}
 {{ $js := resources.Get $jsPath -}}
-{{ range resources.Match "js/*.js" -}}
+{{ range resources.Match "js/*.{js,wasm}" -}}
   {{ .Publish -}}
 {{ end -}}
 {{ if eq hugo.Environment "development" -}}
