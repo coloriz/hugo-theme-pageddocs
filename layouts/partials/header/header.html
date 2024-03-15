@@ -52,13 +52,16 @@
       <div class="offcanvas-body p-4 pt-0 p-lg-0">
         {{- partial "header/hr.html" . -}}
         {{- partial "header/menus.html" . -}}
-        {{- partial "header/hr.html" -}}
+        {{- partial "header/hr.html" . -}}
         {{- partial "header/search.html" . -}}
         {{- partial "header/hr.html" . -}}
         {{- partial "header/social.html" . -}}
-        <div class="vr d-none d-lg-block mx-2 my-1 text-white"></div>
+        {{- partial "header/vr.html" . -}}
         {{- partial "header/hr.html" . -}}
         {{- partial "header/render-modes.html" . -}}
+        {{- partial "header/vr.html" . -}}
+        {{- partial "header/hr.html" . -}}
+        {{- partial "header/language-dropdown.html" . -}}
       </div>
     </div>
   </nav>

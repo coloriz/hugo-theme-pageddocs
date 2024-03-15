@@ -1,0 +1,54 @@
+{{ $bi := resources.Get "bootstrap-icons.svg" -}}
+<ul class="navbar-nav flex-wrap pd-languages">
+  <li class="nav-item dropdown">
+    <button
+      class="nav-link dropdown-toggle px-0 px-lg-2 d-flex align-items-center"
+      id="pd-language"
+      type="button"
+      aria-expanded="false"
+      data-bs-toggle="dropdown"
+      data-bs-display="static"
+      aria-label="Switch language"
+    >
+      <svg class="bi my-1 theme-icon-active">
+        <use href="{{ $bi.RelPermalink }}#translate"></use>
+      </svg>
+      <span class="d-lg-none ms-2" id="pd-language-text">Languages</span>
+    </button>
+    <ul
+      id="pd-language-list"
+      class="dropdown-menu dropdown-menu-end"
+      aria-labelledby="pd-language-text"
+    >
+      <li>
+        <span
+          class="dropdown-item active d-flex align-items-center"
+          aria-current="true"
+        >
+          {{ or site.Language.LanguageName site.Language.Lang }}
+          <svg class="bi ms-auto">
+            <use href="{{ $bi.RelPermalink }}#check2"></use>
+          </svg>
+        </span>
+      </li>
+    {{ with .Translations -}}
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      {{ range . -}}
+        {{ $langName := or .Language.LanguageName .Language.Lang -}}
+        {{ $langCode := or .Language.LanguageCode .Language.Lang -}}
+      <li>
+        <a
+          class="dropdown-item"
+          href="{{ .RelPermalink }}"
+          hreflang="{{ $langCode }}"
+        >
+          {{ $langName }}
+        </a>
+      </li>
+      {{- end }}
+    {{- end }}
+    </ul>
+  </li>
+</ul>

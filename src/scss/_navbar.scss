@@ -35,7 +35,8 @@
   }
 
   .pd-social,
-  .pd-render-modes {
+  .pd-render-modes,
+  .pd-languages {
     --bs-nav-link-color: var(--pd-navbar-color);
   }
 
@@ -114,7 +115,8 @@
   }
 }
 
-#pd-theme-list {
+#pd-theme-list,
+#pd-language-list {
   width: 8rem;
 
   .theme-icon {
