@@ -1,6 +1,6 @@
 {
   "name": "hugo-theme-pageddocs",
-  "description": "The PagedDocs is a Bootstrap-based Hugo Theme for printable documentation.",
+  "description": "Paged Docs is a Bootstrap-based Hugo Theme for printable documentation.",
   "version": "0.1.0",
   "author": "coloriz",
   "@parcel/bundler-default": {

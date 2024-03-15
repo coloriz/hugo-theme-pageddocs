@@ -4,7 +4,7 @@
 name = "pageddocs"
 license = "MIT"
 licenselink = "https://github.com/coloriz/hugo-theme-pageddocs/blob/main/LICENSE"
-description = ""
+description = "Paged Docs is a Bootstrap-based Hugo Theme for printable documentation."
 homepage = "http://example.com/"
 tags = []
 features = []
