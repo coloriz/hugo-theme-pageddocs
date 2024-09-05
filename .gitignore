@@ -176,3 +176,12 @@ hugo.linux
 
 # Temporary lock file while building
 /.hugo_build.lock
+
+### Intellij+all.patch
+# Ignore everything but code style settings and run configurations
+# that are supposed to be shared within teams.
+
+.idea/*
+
+#!.idea/codeStyles
+#!.idea/runConfigurations
