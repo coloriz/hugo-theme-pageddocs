@@ -10,6 +10,12 @@
   }
 }
 
+@page titlePage {
+  @bottom-right {
+    content: unset;
+  }
+}
+
 .pd-page-break {
   break-before: page;
 }

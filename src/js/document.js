@@ -1,6 +1,99 @@
-(() => {
-  "use strict";
+"use strict";
 
+const createHeadingTree = (content) => {
+  const rootHeading = content.querySelector("h1");
+  const headingTree = {
+    id: rootHeading.id,
+    title: rootHeading.textContent.trim(),
+    level: 0,
+    sectionNumber: "0",
+    children: [],
+  };
+  const headingLevels = [];
+  let prevLevel = 0;
+  let prevNode = headingTree;
+
+  for (const heading of content.querySelectorAll("h2, h3, h4, h5, h6")) {
+    const level = Number.parseInt(heading.tagName.slice(-1)) - 1;
+
+    const node = {
+      id: heading.id,
+      title: heading.textContent.trim(),
+      level: level,
+      sectionNumber: heading.dataset.pdSectionNumber,
+      children: [],
+    };
+
+    if (level > prevLevel) {
+      headingLevels.push(prevNode);
+    } else if (level < prevLevel) {
+      for (let i = 0; i < prevLevel - level; i++) {
+        headingLevels.pop();
+      }
+    }
+
+    headingLevels[headingLevels.length - 1].children.push(node);
+    prevLevel = level;
+    prevNode = node;
+  }
+
+  return headingTree;
+};
+
+const createSidebarToC = (headings, maxLevel) => {
+  const ul = document.createElement("ul");
+
+  for (const heading of headings) {
+    const li = document.createElement("li");
+    const anchor = document.createElement("a");
+
+    anchor.href = `#${heading.id}`;
+    anchor.textContent = heading.title;
+    li.appendChild(anchor);
+
+    if (heading.level <= maxLevel && heading.children.length > 0) {
+      li.append(createSidebarToC(heading.children, heading.level));
+    }
+
+    ul.appendChild(li);
+  }
+
+  return ul;
+};
+
+const addPageToCElements = (elements, headings, maxLevel) => {
+  for (const heading of headings) {
+    const li = document.createElement("li");
+    li.dataset.pdLevel = heading.level;
+    li.dataset.pdSectionNumber = heading.sectionNumber;
+
+    const anchor = document.createElement("a");
+    anchor.href = `#${heading.id}`;
+    anchor.textContent = heading.title;
+    li.append(anchor);
+
+    elements.push(li);
+
+    if (heading.level <= maxLevel && heading.children.length > 0) {
+      addPageToCElements(elements, heading.children);
+    }
+  }
+};
+
+const createPageToC = (headings, maxLevel) => {
+  const ul = document.createElement("ul");
+
+  const elements = [];
+  addPageToCElements(elements, headings, maxLevel);
+
+  for (const element of elements) {
+    ul.appendChild(element);
+  }
+
+  return ul;
+};
+
+(() => {
   const content = document.querySelector("#pd-content");
 
   if (!content || content.dataset.pdDocument !== "true") {
@@ -29,39 +122,17 @@
     heading.dataset.pdSectionNumber = headingCounters.slice(0, index + 1).join(".");
   }
 
-  // Generate ToC manually
-  const toc = document.createElement("ul");
-  const startLevel = 2;
-  const endLevel = 3;
+  // Create headings tree
+  const headingTree = createHeadingTree(content);
 
-  const tocLevels = [toc];
-  let prevLevel = startLevel;
+  // Create sidebar ToC
+  const sidebarToC = createSidebarToC(headingTree.children, 2);
+  document.querySelector("#TableOfContents").innerHTML = sidebarToC.outerHTML;
 
-  for (const heading of content.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
-    const level = Number.parseInt(heading.tagName.slice(-1));
-    if (startLevel > level || level > endLevel) {
-      continue;
-    }
-
-    const item = document.createElement("li");
-    const anchor = document.createElement("a");
-    anchor.href = `#${heading.id}`;
-    anchor.textContent = heading.textContent;
-    item.appendChild(anchor);
-
-    if (level > prevLevel) {
-      const ul = document.createElement("ul");
-      tocLevels[tocLevels.length - 1].querySelector(":scope > li:last-child").appendChild(ul);
-      tocLevels.push(ul);
-    } else if (level < prevLevel) {
-      for (let i = 0; i < prevLevel - level; i++) {
-        tocLevels.pop();
-      }
-    }
-
-    tocLevels[tocLevels.length - 1].appendChild(item);
-    prevLevel = level;
+  // Create page ToC
+  const pageToCContent = document.querySelector("#pd-toc-page-content");
+  if (pageToCContent) {
+    const pageToC = createPageToC(headingTree.children, 2);
+    pageToCContent.innerHTML = pageToC.outerHTML;
   }
-
-  document.querySelector("#TableOfContents").innerHTML = toc.outerHTML;
 })();
