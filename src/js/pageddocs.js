@@ -1,7 +1,7 @@
 import "./bootstrap";
 import "./color-modes";
+import "./content";
 import "./dbml";
-import "./document";
 import "./feather-icons";
 import "./katex";
 import "./mermaid";

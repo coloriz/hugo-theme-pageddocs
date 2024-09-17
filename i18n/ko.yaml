@@ -1,3 +1,16 @@
+---
 page:
   header:
     table_of_contents: 목차
+  section_number:
+    separator: '. '
+
+figure:
+  caption:
+    prefix: '그림 '
+    separator: '. '
+
+table:
+  caption:
+    prefix: '표 '
+    separator: '. '

@@ -1,5 +1,9 @@
-.pd-title-page {
+#pd-title-page {
   page: titlePage;
+  break-after: page;
+}
+
+.pd-title-page {
   text-align: right;
 
   &-title {

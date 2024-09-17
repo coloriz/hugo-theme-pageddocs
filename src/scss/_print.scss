@@ -19,3 +19,63 @@
 .pd-page-break {
   break-before: page;
 }
+
+.pd-blank-page {
+  page: blankPage;
+  break-after: page;
+}
+
+@media print {
+  body {
+    font-size: 13px;
+    color: #000000;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .fs-1 {
+    font-size: 36px !important;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .fs-2 {
+    font-size: 28px !important;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  .fs-3 {
+    font-size: 24px !important;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  .fs-4 {
+    font-size: 18px !important;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  .fs-5 {
+    font-size: 16px !important;
+  }
+
+  h6 {
+    font-size: 14px;
+  }
+
+  .fs-6 {
+    font-size: 14px !important;
+  }
+}

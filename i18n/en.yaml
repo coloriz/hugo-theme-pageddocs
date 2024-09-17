@@ -1,3 +1,16 @@
+---
 page:
   header:
     table_of_contents: Table of Contents
+  section_number:
+    separator: '. '
+
+figure:
+  caption:
+    prefix: 'Figure '
+    separator: '. '
+
+table:
+  caption:
+    prefix: 'Table '
+    separator: '. '

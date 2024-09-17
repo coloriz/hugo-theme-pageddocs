@@ -18,9 +18,6 @@ $pd-sidebar-bg:       #fff;
 $pd-sidebar-bg-dark:  color.adjust($body-bg-dark, $lightness: -2%);
 $pd-sidebar-link-bg:  #92979b33;
 
-// ToC page
-$pd-toc-page-header-size: 2rem;
-
 // Paged media
 $pd-page-bg: white;
 $pd-page-border-color: #cfcfcf;
@@ -56,9 +53,6 @@ $pd-page-crop-shadow: white;
   --pd-sidebar-btn-collapse-active-bg: #{$pd-sidebar-link-bg};
   --pd-sidebar-btn-collapse-hover-bg: #{$pd-sidebar-link-bg};
   --pd-sidebar-link-bg: #{$pd-sidebar-link-bg};
-
-  // ToC page
-  --pd-toc-page-header-size: #{$pd-toc-page-header-size};
 
   // Paged media
   --pd-page-bg: #{$pd-page-bg};

@@ -3,18 +3,20 @@
 {{- $author := .Get "author" -}}
 {{- $revision := .Get "revision" -}}
 {{- $documentID := printf "document-%s" .Page.File.UniqueID -}}
-<section class="d-none d-print-block pd-title-page">
-  <div class="pd-title-page-title">{{ $title }}</div>
-  <div class="pd-title-page-subtitle">{{ $subtitle }}</div>
-  <div class="pd-title-page-author">{{ $author }}</div>
-  <div class="pd-title-page-revision">{{ $revision }}</div>
+<section id="pd-title-page">
+  <div class="pd-title-page d-none d-print-block">
+    <div class="pd-title-page-title">{{ $title }}</div>
+    <div class="pd-title-page-subtitle">{{ $subtitle }}</div>
+    <div class="pd-title-page-author">{{ $author }}</div>
+    <div class="pd-title-page-revision">{{ $revision }}</div>
+  </div>
+  <div class="d-print-none mb-5">
+    {{ if not $subtitle -}}
+      <h1 id="{{ $documentID }}">{{ $title }}</h1>
+    {{- else -}}
+      <h1 id="{{ $documentID }}">{{ $title }}: {{ $subtitle }}</h1>
+    {{- end }}
+    <div class="small text-body-secondary">written by {{ $author }}</div>
+    <div class="small text-body-secondary">{{ $revision }}</div>
+  </div>
 </section>
-<div class="d-print-none mb-5">
-  {{ if not $subtitle -}}
-    <h1 id="{{ $documentID }}">{{ $title }}</h1>
-  {{- else -}}
-    <h1 id="{{ $documentID }}">{{ $title }}: {{ $subtitle }}</h1>
-  {{- end }}
-  <div class="small text-body-secondary">written by {{ $author }}</div>
-  <div class="small text-body-secondary">{{ $revision }}</div>
-</div>

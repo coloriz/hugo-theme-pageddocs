@@ -1,0 +1,24 @@
+{{- /*
+  Usage: `figure src="path"`
+
+  Optional parameters:
+    * alt: Defines an alternative text description of the image.
+    * class: Additional `class` attribute of the HTML `img` tag.
+    * width: `width` attribute of the image.
+    * height: `height` attribute of the image.
+    * caption: Image caption. Markdown within the value of `caption` will be rendered.
+*/ -}}
+
+{{- $img := resources.Get (.Get "src") -}}
+<figure class="figure">
+  <img src="{{ $img.RelPermalink }}" class="figure-img img-fluid{{ with .Get "class" }} {{ . }}{{ end }}"
+    {{- with .Get "alt" }} alt="{{ . }}"{{ end -}}
+    {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+    {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+  >
+  {{ with .Get "caption" -}}
+    <figcaption class="figure-caption text-center">
+      <span class="figure-caption-prefix">{{ i18n "figure.caption.prefix" }}</span><span class="figure-caption-number"></span><span class="figure-caption-separator">{{ i18n "figure.caption.separator" }}</span><span class="figure-caption-body">{{ . | markdownify }}</span>
+    </figcaption>
+  {{- end }}
+</figure>

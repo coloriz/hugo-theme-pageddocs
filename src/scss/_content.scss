@@ -12,13 +12,25 @@
     --bs-heading-color: var(--bs-emphasis-color);
   }
 
-  &[data-pd-document] {
-    h2::before,
-    h3::before,
-    h4::before,
-    h5::before,
-    h6::before {
-      content: attr(data-pd-section-number) ".";
+  &:not([data-pd-document]) {
+    .pd-section-number, .pd-section-number-separator {
+      display: none;
+    }
+
+    .figure-caption {
+      &-prefix,
+      &-number,
+      &-separator {
+        display: none;
+      }
+    }
+
+    caption {
+      .table-caption-prefix,
+      .table-caption-number,
+      .table-caption-separator {
+        display: none;
+      }
     }
   }
 }
@@ -34,4 +46,13 @@
   height: 1em;
   min-width: 1em;
   min-height: 1em;
+}
+
+dt {
+  margin-top: 1rem;
+}
+
+dd {
+  padding-left: 1rem;
+  margin-bottom: 1rem;
 }

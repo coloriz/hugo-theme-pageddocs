@@ -1,0 +1,11 @@
+{{- $filename := default (.Get "file") (.Get 0) -}}
+{{- $levelOffset := int (default "0" (.Get "levelOffset")) -}}
+{{- $section := default "snippets" (.Get "section") -}}
+{{- $url := path.Join "/" $section $filename -}}
+{{- with site.GetPage $url -}}
+  <section data-pd-level-offset="{{ $levelOffset }}">
+    {{ .Content }}
+  </section>
+{{- else -}}
+  {{ errorf "Cannot find page %q. See %s" $url .Position }}
+{{- end -}}

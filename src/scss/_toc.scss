@@ -93,11 +93,11 @@
 }
 
 #pd-toc-page {
+  page: tocPage;
   break-after: page;
-  overflow-x: hidden;
 
   header {
-    font-size: var(--pd-toc-page-header-size);
+    font-size: 32px;
     font-weight: 500;
   }
 
@@ -109,14 +109,15 @@
 
       li {
         display: flex;
+        overflow-x: hidden;
 
         &[data-pd-level="1"] {
-          margin-top: 25px;
+          margin-top: 20px;
           font-weight: bold;
         }
 
         &[data-pd-level="2"] {
-          margin-left: 25px;
+          margin-left: 24px;
         }
 
         &::before {

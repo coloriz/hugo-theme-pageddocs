@@ -1,4 +1,4 @@
-<h{{ .Level }} id="{{ .Anchor | safeURL }}">
-  {{ .Text | safeHTML }}
-  <a class="anchor-link d-print-none" href="#{{ .Anchor | safeURL }}" aria-label="Link to this section: {{ .Text | safeHTML }}"></a>
+<h{{ .Level }}>
+  <span class="pd-section-number"></span><span class="pd-section-number-separator">{{ i18n "page.section_number.separator" }}</span><span class="pd-section-title">{{ .Text | safeHTML }}</span>
+  <a href="#" class="anchor-link d-print-none" aria-label="Link to this section: {{ .Text | safeHTML }}"></a>
 </h{{ .Level }}>

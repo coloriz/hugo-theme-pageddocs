@@ -63,5 +63,7 @@
       "distDir": "assets",
       "source": "node_modules/bootstrap-icons/bootstrap-icons.svg"
     }
-  }
+  },
+  "packageManager": "yarn@1.22.22",
+  "dependencies": {}
 }

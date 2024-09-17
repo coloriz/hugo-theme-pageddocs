@@ -3,8 +3,8 @@
 const createHeadingTree = (content) => {
   const rootHeading = content.querySelector("h1");
   const headingTree = {
-    id: rootHeading.id,
-    title: rootHeading.textContent.trim(),
+    id: rootHeading?.id ?? "",
+    title: rootHeading?.textContent.trim() ?? "",
     level: 0,
     sectionNumber: "0",
     children: [],
@@ -18,7 +18,7 @@ const createHeadingTree = (content) => {
 
     const node = {
       id: heading.id,
-      title: heading.textContent.trim(),
+      title: heading.querySelector(".pd-section-title").textContent.trim(),
       level: level,
       sectionNumber: heading.dataset.pdSectionNumber,
       children: [],
@@ -70,7 +70,7 @@ const addPageToCElements = (elements, headings, maxLevel) => {
     const anchor = document.createElement("a");
     anchor.href = `#${heading.id}`;
     anchor.textContent = heading.title;
-    li.append(anchor);
+    li.appendChild(anchor);
 
     elements.push(li);
 
@@ -96,12 +96,8 @@ const createPageToC = (headings, maxLevel) => {
 (() => {
   const content = document.querySelector("#pd-content");
 
-  if (!content || content.dataset.pdDocument !== "true") {
-    return;
-  }
-
   // Adjust heading levels
-  for (const section of content.querySelectorAll("section[data-pd-level-offset]")) {
+  for (const section of content.querySelectorAll("[data-pd-level-offset]")) {
     const offset = Number.parseInt(section.dataset.pdLevelOffset);
     for (const heading of section.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
       const level = Number.parseInt(heading.tagName.slice(-1));
@@ -119,7 +115,25 @@ const createPageToC = (headings, maxLevel) => {
     if (index < headingCounters.length - 1) {
       headingCounters.fill(0, index + 1);
     }
-    heading.dataset.pdSectionNumber = headingCounters.slice(0, index + 1).join(".");
+
+    const sectionNumbers = headingCounters.slice(0, index + 1);
+
+    // Assign unique section id
+    const id = `section-${sectionNumbers.join("-")}`;
+    heading.id = id;
+
+    const anchor = heading.querySelector(".anchor-link");
+    if (anchor) {
+      anchor.href = `#${id}`;
+    }
+
+    const sectionNumberString = sectionNumbers.join(".");
+    heading.dataset.pdSectionNumber = sectionNumberString;
+
+    const sectionNumber = heading.querySelector(".pd-section-number");
+    if (sectionNumber) {
+      sectionNumber.textContent = sectionNumberString;
+    }
   }
 
   // Create headings tree
@@ -127,12 +141,29 @@ const createPageToC = (headings, maxLevel) => {
 
   // Create sidebar ToC
   const sidebarToC = createSidebarToC(headingTree.children, 2);
-  document.querySelector("#TableOfContents").innerHTML = sidebarToC.outerHTML;
+  const sidebarToCElement = document.querySelector("#TableOfContents");
+  if (sidebarToCElement) {
+    sidebarToCElement.innerHTML = sidebarToC.outerHTML;
+  }
+
+  if (!content || content.dataset.pdDocument !== "true") {
+    return;
+  }
 
   // Create page ToC
   const pageToCContent = document.querySelector("#pd-toc-page-content");
   if (pageToCContent) {
     const pageToC = createPageToC(headingTree.children, 2);
     pageToCContent.innerHTML = pageToC.outerHTML;
+  }
+
+  // Assign figure numbers
+  for (const [i, caption] of document.querySelectorAll(".figure-caption").entries()) {
+    caption.querySelector(".figure-caption-number").textContent = `${i + 1}`;
+  }
+
+  // Assign table numbers
+  for (const [i, caption] of document.querySelectorAll("caption").entries()) {
+    caption.querySelector(".table-caption-number").textContent = `${i + 1}`;
   }
 })();
